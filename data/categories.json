@@ -1,0 +1,38 @@
+[
+  {
+    "id": "biryanis",
+    "name": "Biryanis",
+    "sortOrder": 1,
+    "active": true
+  },
+  {
+    "id": "kebabs",
+    "name": "Kebabs",
+    "sortOrder": 2,
+    "active": true
+  },
+  {
+    "id": "kormas",
+    "name": "Kormas & Estew",
+    "sortOrder": 3,
+    "active": true
+  },
+  {
+    "id": "breads",
+    "name": "Breads",
+    "sortOrder": 4,
+    "active": true
+  },
+  {
+    "id": "desserts",
+    "name": "Desserts",
+    "sortOrder": 5,
+    "active": true
+  },
+  {
+    "id": "lassi",
+    "name": "Lassi",
+    "sortOrder": 6,
+    "active": true
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "welcome-indiranagar",
+    "title": "Now in Indiranagar",
+    "description": "Same Lucknowi kitchen stories — now closer to you on 100 Ft Road.",
+    "active": true
+  },
+  {
+    "id": "weekday-biryani",
+    "title": "Weekday Biryani Love",
+    "description": "Add a lassi free on weekday biryani orders above ₹500. Mention code QISSA500.",
+    "code": "QISSA500",
+    "discountPercent": 0,
+    "active": true
+  }
+]

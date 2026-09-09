@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t1",
+    "customerName": "Ananya R.",
+    "message": "The Galouti literally melts. Ordered on WhatsApp before — this site made it so much easier.",
+    "rating": 5,
+    "approved": true,
+    "createdAt": "2026-09-07T10:20:00.000Z"
+  },
+  {
+    "id": "t2",
+    "customerName": "Rohan M.",
+    "message": "Dum Gosht Biryani tastes like home. Confirmations are clear and the kitchen is on time.",
+    "rating": 5,
+    "approved": true,
+    "createdAt": "2026-09-06T18:05:00.000Z"
+  },
+  {
+    "id": "t3",
+    "customerName": "Priya S.",
+    "message": "Finally an ordering flow that doesn’t need 10 Instagram DMs. Shahi Tukda is unreal.",
+    "rating": 5,
+    "approved": true,
+    "createdAt": "2026-09-05T14:40:00.000Z"
+  },
+  {
+    "id": "t4",
+    "customerName": "Karthik V.",
+    "message": "Ordered Bhuna Murgh + Ulte Tawa Paratha for office. Packaging was solid, taste was fire.",
+    "rating": 5,
+    "approved": false,
+    "createdAt": "2026-09-09T05:10:00.000Z"
+  },
+  {
+    "id": "t5",
+    "customerName": "Meera D.",
+    "message": "Kesari Lassi is dangerous. Please never change the recipe.",
+    "rating": 4,
+    "approved": false,
+    "createdAt": "2026-09-08T20:30:00.000Z"
+  }
+]

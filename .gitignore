@@ -27,8 +27,10 @@ yarn-error.log*
 .env*.local
 .env
 
-# runtime data store
-/data/*.json
+# runtime data store (keep seed JSON in repo for Vercel reads)
+# /data/*.json
+/data/.runtime/
+
 
 # vercel
 .vercel

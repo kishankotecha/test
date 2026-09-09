@@ -17,27 +17,57 @@ import {
   defaultTestimonials,
 } from '@/lib/seed';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
+/**
+ * Vercel serverless can't write to the project dir.
+ * Read bundled/seed data from cwd, write runtime changes to /tmp when available.
+ */
+const BUNDLE_DIR = path.join(process.cwd(), 'data');
+const RUNTIME_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'qissa-data')
+  : BUNDLE_DIR;
 
-async function ensureDir() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
+async function ensureDir(dir: string) {
+  await fs.mkdir(dir, { recursive: true });
 }
 
 async function readJson<T>(file: string, fallback: T): Promise<T> {
-  await ensureDir();
-  const filePath = path.join(DATA_DIR, file);
+  const runtimePath = path.join(RUNTIME_DIR, file);
+  const bundlePath = path.join(BUNDLE_DIR, file);
+
   try {
-    const raw = await fs.readFile(filePath, 'utf-8');
+    const raw = await fs.readFile(runtimePath, 'utf-8');
     return JSON.parse(raw) as T;
   } catch {
-    await fs.writeFile(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
-    return fallback;
+    // fall through
   }
+
+  try {
+    const raw = await fs.readFile(bundlePath, 'utf-8');
+    return JSON.parse(raw) as T;
+  } catch {
+    // fall through
+  }
+
+  try {
+    await ensureDir(RUNTIME_DIR);
+    await fs.writeFile(runtimePath, JSON.stringify(fallback, null, 2), 'utf-8');
+  } catch {
+    // Read-only / ephemeral FS — return in-memory defaults
+  }
+
+  return fallback;
 }
 
 async function writeJson<T>(file: string, data: T): Promise<void> {
-  await ensureDir();
-  await fs.writeFile(path.join(DATA_DIR, file), JSON.stringify(data, null, 2), 'utf-8');
+  try {
+    await ensureDir(RUNTIME_DIR);
+    await fs.writeFile(path.join(RUNTIME_DIR, file), JSON.stringify(data, null, 2), 'utf-8');
+  } catch (error) {
+    console.error(`Failed to persist ${file}:`, error);
+    throw new Error(
+      'Could not save data on this host. Local/dev works; on Vercel use a real database for permanent admin edits.'
+    );
+  }
 }
 
 export const db = {
